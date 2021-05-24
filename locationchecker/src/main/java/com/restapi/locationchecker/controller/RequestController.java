@@ -21,8 +21,8 @@ public class RequestController {
     @GetMapping("/{city}")
     @Produces(MediaType.APPLICATION_JSON)
     List<UserDataMessage> sendRequest(@NotBlank @PathVariable String city) throws ValidationException {
-        // Check if path is London
-        if (city.equals("London")) {
+        // Check if path is allowed city
+        if (city.equals(LondonConstants.cityName)) {
             // Call api for people living in London. First the city name is changed to the correct format then input into the url and the api is called.
             //Once called the response is parsed and returned to a list.
             List<UserDataMessage> outputList = CallExternalAPI.sendRequest(ApplicationUtils.insertCityIntoURL(EndPoints.endPointOne, city));
